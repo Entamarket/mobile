@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
@@ -7,6 +6,7 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import ButtonPrimary from "../UIComponents/Button-Primary/Button-Primary";
 import ButtonSecondary from "../UIComponents/Button-Secondary/ButtonSecondary";
 import { useNavigation } from "@react-navigation/native";
@@ -29,7 +29,7 @@ export default function CreateAccountScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: Platform.OS === "android" ? (StatusBar.currentHeight ?? 0) + 6 : 14,
   },
   content: {
     paddingHorizontal: 16,

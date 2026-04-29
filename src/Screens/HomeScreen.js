@@ -1,13 +1,11 @@
 import {
-  SafeAreaView,
   View,
   ActivityIndicator,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
-  StatusBar as RNStatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useCallback } from "react";
 import Header from "../Components/Header/Header";
 import HomeProducts from "../../src/Components/HomeProducts/HomeProducts";
@@ -32,7 +30,7 @@ export default function HomeScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <Header userData={user} isUser={isUser} />
       <Search />
       <Carousel />
@@ -62,8 +60,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:
-      Platform.OS === "android" ? (RNStatusBar.currentHeight ?? 0) + 6 : 14,
     backgroundColor: baseColors.greyLight,
   },
   indicator: {

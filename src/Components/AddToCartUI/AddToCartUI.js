@@ -1,4 +1,5 @@
-import { SafeAreaView, StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import ButtonPrimary from "../../UIComponents/Button-Primary/Button-Primary";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";

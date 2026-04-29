@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
@@ -7,6 +6,7 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import useSignInHandler from "../../hooks/useSignInHandler";
 import LoadingModal from "../../UIComponents/LoadingModal";
@@ -29,7 +29,7 @@ const BuyerSignin = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <ScrollView
         contentContainerStyle={styles.formContainer}
         keyboardShouldPersistTaps="handled"
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: Platform.OS === "android" ? (StatusBar.currentHeight ?? 0) + 6 : 14,
   },
   signInText: {
     fontSize: 26,

@@ -1,13 +1,13 @@
 import React from "react";
 import {
   Text,
-  SafeAreaView,
   StyleSheet,
   Image,
   Dimensions,
   View,
   TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import slides from "../common/slides";
 import AppIntroSlider from "react-native-app-intro-slider";
 import baseColors from "../../src/common/baseColors";

@@ -1,4 +1,5 @@
-import { SafeAreaView, ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useCallback } from "react";
 import CategoryProducts from "../Components/CategoryProducts/CategoryProducts";
 import Search from "../Components/Search/Search";

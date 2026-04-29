@@ -1,4 +1,5 @@
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput, Button, HelperText } from "react-native-paper";
 import { useState } from "react";
 import baseColors from "../../common/baseColors";

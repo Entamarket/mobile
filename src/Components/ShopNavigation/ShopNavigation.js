@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
@@ -7,6 +6,7 @@ import {
   Linking,
   TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useState, useCallback } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import entamarketApi from "../../api/entamarketApi";
@@ -202,7 +202,7 @@ const ShopNavigation = () => {
   };
   if (!loading) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
         <ScrollView>
           <View style={styles.formContainer}>
             <View style={styles.signTextCon}>

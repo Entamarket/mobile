@@ -5,6 +5,7 @@ import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import AppNavContainer from "./src/navigations";
 import { Provider } from "react-redux";
 import store from "./src/Store/Store";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const theme = {
   ...DefaultTheme,
@@ -18,16 +19,18 @@ const theme = {
 
 function App() {
   return (
-    <Provider store={store}>
-      <PaperProvider
-        theme={theme}
-        settings={{
-          icon: (props) => <MaterialCommunityIcons {...props} />,
-        }}
-      >
-        <AppNavContainer />
-      </PaperProvider>
-    </Provider>
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <PaperProvider
+          theme={theme}
+          settings={{
+            icon: (props) => <MaterialCommunityIcons {...props} />,
+          }}
+        >
+          <AppNavContainer />
+        </PaperProvider>
+      </Provider>
+    </SafeAreaProvider>
   );
 }
 

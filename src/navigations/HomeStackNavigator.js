@@ -43,7 +43,6 @@ import UpdateProduct from "../Components/UpdateProduct/UpdateProduct";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import baseColors from "../common/baseColors";
-import { useNavigation } from "@react-navigation/native";
 import SellerBankDetails from "../Components/SellerBankDetails/SellerBankDetails";
 import AddPaymentAccount from "../Components/AddPaymentAccount/AddPaymentAccount";
 import RequestPayment from "../Components/RequestPayment/RequestPayment";
@@ -60,7 +59,6 @@ import { flexItems } from "../common/styles";
 import { cartSliceActions } from "../Slice/Cart-Slice";
 
 const AppNavContainer = () => {
-  const navigation = useNavigation();
   const HomeStack = createStackNavigator();
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.isLoggedIn.loggedIn);
@@ -113,7 +111,7 @@ const AppNavContainer = () => {
       <HomeStack.Screen
         name="ProductView"
         component={ProductViewScreen}
-        options={({ route }) => ({
+        options={({ navigation }) => ({
           title: `Product`,
           headerRight: () => (
             <TouchableOpacity
@@ -146,7 +144,7 @@ const AppNavContainer = () => {
       <HomeStack.Screen
         name="BuyerSignUp"
         component={BuyerSignup}
-        options={({ headerShown: true }, ({ route }) => ({ title: `` }))}
+        options={{ headerShown: false }}
       />
       <HomeStack.Screen
         name="BuyerSignIn"
@@ -161,7 +159,7 @@ const AppNavContainer = () => {
       <HomeStack.Screen
         name="SellerSignUp"
         component={SellerSignUp}
-        options={({ headerShown: true }, ({ route }) => ({ title: `` }))}
+        options={{ headerShown: false }}
       />
       <HomeStack.Screen
         name="CreateAccount"
@@ -322,7 +320,7 @@ const AppNavContainer = () => {
       <HomeStack.Screen
         name="ShopProd"
         component={ShopProductNav}
-        options={({ route }) => ({
+        options={({ navigation, route }) => ({
           title: `${route.params.shopName}`,
           headerRight: () => (
             <TouchableOpacity

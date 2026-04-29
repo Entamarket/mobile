@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   ScrollView,
@@ -7,6 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import baseColors from "../../common/baseColors";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -188,7 +188,7 @@ export default function SellerDashboard() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       {showVerifyBox ? (
         <VerficationModal
           showVerifyBox={showVerifyBox}

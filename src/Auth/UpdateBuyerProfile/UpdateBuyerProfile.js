@@ -1,4 +1,5 @@
-import { SafeAreaView, StyleSheet, ScrollView, Text, View } from "react-native";
+import { StyleSheet, ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import PhoneInput from "react-native-phone-number-input";
 
 import baseColors from "../../common/baseColors";

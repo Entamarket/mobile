@@ -1,15 +1,17 @@
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   Text,
   View,
   KeyboardAvoidingView,
   Platform,
+  TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import PhoneInput from "react-native-phone-number-input";
 import baseColors from "../../common/baseColors";
 import { useNavigation } from "@react-navigation/native";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import UseSellerSignUp from "../../hooks/UseSellerSignUp";
 import { useState, useRef } from "react";
 import LoadingModal from "../../UIComponents/LoadingModal";
@@ -31,7 +33,7 @@ const SellerSignUp = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -41,6 +43,9 @@ const SellerSignUp = () => {
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
+        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
+          <AntDesign name="left" size={18} color={baseColors.primaryColor} />
+        </TouchableOpacity>
         <View style={styles.signTextCon}>
           <Text style={styles.signInText}>Seller Sign Up</Text>
           <Text style={styles.signupText}>Signup for a seller account</Text>
@@ -241,11 +246,20 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: 12,
   },
   signInText: {
     fontSize: 22,
     fontWeight: "700",
+  },
+  backBtn: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    backgroundColor: "#eef2ff",
   },
   buttonStyle: {
     marginVertical: 10,
@@ -253,12 +267,13 @@ const styles = StyleSheet.create({
     height: 50,
   },
   formContainer: {
-    paddingVertical: 8,
+    paddingTop: 8,
+    paddingBottom: 16,
     paddingHorizontal: 16,
   },
   signupText: {
     fontSize: 14,
-    marginBottom: 14,
+    marginBottom: 8,
   },
   signTextCon: {
     alignItems: "center",

@@ -1,4 +1,5 @@
-import { SafeAreaView, StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import useBuyerResetPassword from "../../hooks/UseBuyerResetPassword";
 import LoadingModal from "../../UIComponents/LoadingModal";
 import ButtonPrimary from "../../UIComponents/Button-Primary/Button-Primary";

@@ -1,13 +1,11 @@
 import {
-  SafeAreaView,
-  Platform,
   StyleSheet,
   Text,
   View,
   ScrollView,
   TouchableOpacity,
-  StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import baseColors from "../../common/baseColors";
 import { useNavigation } from "@react-navigation/native";
 import ButtonPrimary from "../../UIComponents/Button-Primary/Button-Primary";
@@ -27,7 +25,7 @@ export default function AuthenticateUser(props) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <ScrollView>
         <View style={styles.TextBox}>
           <Text style={styles.headingText}>Sign in to Continue</Text>
@@ -66,7 +64,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: Platform.OS === "android" ? (StatusBar.currentHeight ?? 0) + 6 : 14,
   },
   TextBox: {
     alignItems: "center",

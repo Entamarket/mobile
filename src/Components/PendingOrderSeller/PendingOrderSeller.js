@@ -1,4 +1,5 @@
-import { View, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import entamarketApi from "../../api/entamarketApi";
 import PendingInfo from "../../UIComponents/PendingInfo/PendingInfo";
 import ButtonPrimary from "../../UIComponents/Button-Primary/Button-Primary";

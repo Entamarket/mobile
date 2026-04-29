@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   View,
   Text,
   StyleSheet,
@@ -8,6 +7,7 @@ import {
   ActivityIndicator,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -72,7 +72,7 @@ const SellerBankDetails = () => {
     );
   } else {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
         <View>
           <View style={styles.profileIconBox}>
             <View style={styles.iconBox}>
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#eee",
     flex: 1,
-    paddingTop: Platform.OS === "android" ? (StatusBar.currentHeight ?? 0) + 6 : 14,
   },
   contain2: {
     flex: 1,

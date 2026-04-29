@@ -1,10 +1,10 @@
 import {
-  SafeAreaView,
   Platform,
   StyleSheet,
   StatusBar,
   StatusBar as RNStatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import AuthenticateUser from "../Components/AuthenticateUser/AuthenticateUser";
 import { useSelector } from "react-redux";
 import BuyerDashboard from "../Components/BuyerDashboard/BuyerDashboard";
@@ -16,7 +16,7 @@ export default function DashboardScreen() {
 
   if (!userData) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
         <StatusBar backgroundColor={baseColors.primaryColor} style="light" />
         <AuthenticateUser type="Dashboard" />
       </SafeAreaView>
@@ -25,7 +25,7 @@ export default function DashboardScreen() {
 
   if (userData.accountType === "buyer") {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
         <StatusBar backgroundColor={baseColors.primaryColor} style="light" />
         <BuyerDashboard />
       </SafeAreaView>
@@ -34,7 +34,7 @@ export default function DashboardScreen() {
 
   if (userData.accountType === "trader") {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
         <StatusBar backgroundColor={baseColors.primaryColor} style="light" />
         <SellerDashboard />
       </SafeAreaView>
@@ -46,7 +46,5 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: baseColors.greyLight,
     flex: 1,
-    paddingTop:
-      Platform.OS === "android" ? (RNStatusBar.currentHeight ?? 0) + 6 : 14,
   },
 });

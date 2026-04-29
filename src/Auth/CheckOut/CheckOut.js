@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
@@ -7,6 +6,7 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useRef } from "react";
 import ButtonPrimary from "../../UIComponents/Button-Primary/Button-Primary";

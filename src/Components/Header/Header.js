@@ -1,11 +1,11 @@
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import HeaderNav from "./HeaderNav";
 
 export default function Header(props) {
   return (
-    <SafeAreaView style={[styles.container, styles.body]}>
+    <View style={[styles.container, styles.body]}>
       <HeaderNav user={props.userData} isUser={props.isUser} />
-    </SafeAreaView>
+    </View>
   );
 }
 

@@ -1,10 +1,10 @@
 import {
   View,
   Text,
-  SafeAreaView,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput, Button, HelperText } from "react-native-paper";
 
 import { useState, useCallback } from "react";

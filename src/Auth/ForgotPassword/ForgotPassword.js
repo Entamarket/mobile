@@ -1,4 +1,5 @@
-import { SafeAreaView, StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput, Button } from "react-native-paper";
 import { HelperText } from "react-native-paper";
 import useBuyerForgotPassword from "../../hooks/useBuyerForgotPassword";

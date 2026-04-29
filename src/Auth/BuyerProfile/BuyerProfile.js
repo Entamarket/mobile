@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   View,
   Text,
   StyleSheet,
@@ -7,6 +6,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import baseColors from "../../common/baseColors";
@@ -37,7 +37,7 @@ const BuyerProfile = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View>
         <View style={styles.profileIconBox}>
           <FontAwesome name="user-o" style={styles.iconStyle} />
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#eee",
     flex: 1,
-    paddingTop: Platform.OS === "android" ? (StatusBar.currentHeight ?? 0) + 6 : 14,
   },
   profileMain: {
     padding: 9,

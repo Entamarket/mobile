@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { convertPrice } from "../../utilities/convertPrice";
 import baseColors from "../../common/baseColors";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const CartCard = (props) => {
   return (
@@ -31,7 +32,7 @@ const CartCard = (props) => {
 
       <View>
         <TouchableOpacity onPress={props.removeCartItem}>
-          <Ionicons name="ios-trash" style={styles.iconStyle} />
+          <MaterialCommunityIcons name="trash-can-outline" style={styles.iconStyle} />
         </TouchableOpacity>
       </View>
     </View>
