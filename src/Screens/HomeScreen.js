@@ -1,14 +1,14 @@
 import {
   View,
-  ActivityIndicator,
   StyleSheet,
   Text,
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import Header from "../Components/Header/Header";
 import HomeProducts from "../../src/Components/HomeProducts/HomeProducts";
+import HomeProductsShimmer from "../Components/HomeProducts/HomeProductsShimmer";
 import Search from "../Components/Search/Search";
 import Categories from "../Components/Category/Categories";
 import UseHomeProducts from "../hooks/UseHomeProducts";
@@ -22,10 +22,13 @@ export default function HomeScreen() {
   const [{ products, loading, error }, getHomeProducts] = UseHomeProducts();
   const [getUserData, { user, isUser }] = useGetUser();
 
+  useEffect(() => {
+    getHomeProducts();
+  }, []);
+
   useFocusEffect(
     useCallback(() => {
       getUserData();
-      getHomeProducts();
     }, [])
   );
 
@@ -36,17 +39,16 @@ export default function HomeScreen() {
       <Carousel />
       <Categories />
 
-      {loading ? (
-        <ActivityIndicator
-          size="large"
-          color={baseColors.primaryColor}
-          style={styles.indicator}
-        />
+      {loading && (!products || products.length === 0) ? (
+        <HomeProductsShimmer />
       ) : error ? (
         <View style={styles.errorBox}>
           <Text style={styles.errorTitle}>Couldn’t load products</Text>
           <Text style={styles.errorText}>{String(error)}</Text>
-          <TouchableOpacity style={styles.retryBtn} onPress={getHomeProducts}>
+          <TouchableOpacity
+            style={styles.retryBtn}
+            onPress={() => getHomeProducts(true)}
+          >
             <Text style={styles.retryBtnText}>Retry</Text>
           </TouchableOpacity>
         </View>
@@ -61,11 +63,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: baseColors.greyLight,
-  },
-  indicator: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: "#fff",
   },
   errorBox: {
     flex: 1,

@@ -5,6 +5,8 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Modal,
+  Dimensions,
 } from "react-native";
 import baseColors from "../../common/baseColors";
 import { useRoute } from "@react-navigation/native";
@@ -19,6 +21,7 @@ import { cartSliceActions } from "../../Slice/Cart-Slice";
 import { useDispatch, useSelector } from "react-redux";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Alert } from "react-native";
+import ImageZoom from "react-native-image-pan-zoom";
 
 export default function ProductView() {
   const navigation = useNavigation();
@@ -26,8 +29,10 @@ export default function ProductView() {
   const userData = useSelector((state) => state.isLoggedIn.userData);
   const [{ product, loading, error }, getSingleProducts] = UseSingProducts();
   const [imgUrl, setImgUrl] = useState(0);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
   const route = useRoute();
   const id = route.params.id;
+  const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
   const addToCartHandler = async () => {
     dispatch(cartSliceActions.setCartError(""));
@@ -89,13 +94,19 @@ export default function ProductView() {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.prodViewImageContainer}>
-        <Image
-          style={styles.prodViewImage}
-          source={{
-            uri: product.images[imgUrl],
-          }}
-          resizeMode="contain"
-        />
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={() => setIsZoomOpen(true)}
+          style={styles.mainImagePressable}
+        >
+          <Image
+            style={styles.prodViewImage}
+            source={{
+              uri: product.images[imgUrl],
+            }}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
 
         <View style={styles.selectImageContainer}>
           {product.images.map((img, index) => {
@@ -118,6 +129,40 @@ export default function ProductView() {
           })}
         </View>
       </View>
+
+      <Modal
+        visible={isZoomOpen}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setIsZoomOpen(false)}
+      >
+        <View style={styles.zoomModalBackdrop}>
+          <TouchableOpacity
+            onPress={() => setIsZoomOpen(false)}
+            style={styles.zoomCloseButton}
+            accessibilityRole="button"
+            accessibilityLabel="Close image"
+          >
+            <MaterialCommunityIcons name="close" size={26} color="#fff" />
+          </TouchableOpacity>
+
+          <ImageZoom
+            cropWidth={windowWidth}
+            cropHeight={windowHeight}
+            imageWidth={windowWidth}
+            imageHeight={windowWidth}
+            enableCenterFocus={false}
+            minScale={1}
+            maxScale={3}
+          >
+            <Image
+              style={{ width: windowWidth, height: windowWidth }}
+              source={{ uri: product.images[imgUrl] }}
+              resizeMode="contain"
+            />
+          </ImageZoom>
+        </View>
+      </Modal>
 
       <View style={styles.prodDetails}>
         <View>
@@ -173,6 +218,14 @@ export default function ProductView() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+  },
+  mainImagePressable: {
+    width: "100%",
+    alignItems: "center",
+  },
   headerStyle: {
     borderTopColor: "#fff",
     borderBottomColor: "#eee",
@@ -212,6 +265,19 @@ const styles = StyleSheet.create({
     width: 180,
     height: 180,
     alignSelf: "center",
+  },
+  zoomModalBackdrop: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.95)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  zoomCloseButton: {
+    position: "absolute",
+    top: 50,
+    right: 16,
+    zIndex: 5,
+    padding: 10,
   },
   prodDetails: {
     backgroundColor: "#fff",

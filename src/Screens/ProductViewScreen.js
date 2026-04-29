@@ -6,6 +6,7 @@ import baseColors from "../common/baseColors";
 export default function ProductViewScreen() {
   return (
     <SafeAreaView
+      edges={["left", "right", "bottom"]}
       style={{
         flex: 1,
       }}

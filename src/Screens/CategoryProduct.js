@@ -26,7 +26,7 @@ export default function CategoryProduct() {
     }, [])
   );
 
-  if (loading) {
+  if (loading && (!products || products.length === 0)) {
     return (
       <ActivityIndicator
         size="large"
