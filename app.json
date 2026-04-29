@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Entamarket",
+    "slug": "Entamarket",
+    "version": "1.3.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon1.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash1.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#81007f"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.entamarket.Entamarket"
+    },
+    "android": {
+      "package": "com.entamarket.Entamarket",
+      "versionCode": 10,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon2.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "70a5da33-c47c-4dfb-800f-30894613a7ef"
+      }
+    }
+  }
+}
